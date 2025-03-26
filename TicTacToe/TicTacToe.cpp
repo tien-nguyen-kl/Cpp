@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -20,13 +21,17 @@ public:
         this->field = field;
     }
 
-    void print_field(){
+    string getFieldStr(){
+        stringstream result;
+        //Fuellen Stream mit Daten
         for (const auto &r: this->field){
             for (const int val: r){
-                cout << val << " "; 
+                result << val << " "; 
             }
-            cout << endl;
+            result << endl;
         }
+        //Gib mir bitte den String aus meinem Stringstream
+        return result.str();
     }
 
     int calculateWinner() {
@@ -69,21 +74,3 @@ private:
 };
 
 
-int main(int argc, const char * argv[]){
-
-    TicTacToeField field1;
-
-    vector<vector<int>> field = {
-        {1, 0, 1},
-        {2, 2, 1},
-        {1, 2, 1}
-    };
-
-    field1.set_field(field);
-    field1.print_field();
-    int winner = field1.calculateWinner();
-    cout << winner << " hat das Spiel gewonnen" << endl;
-
-
-    return 0;
-}
