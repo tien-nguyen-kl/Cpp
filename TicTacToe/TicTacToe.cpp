@@ -4,25 +4,26 @@
 
 using namespace std;
 
-int calculateWinner(array<array<int,3>, 3> field){
-
+int calculateWinner(const array<array<int,3>, 3>& field){
+    // Check for horizontal or vertical win
     for (int i = 0; i < field.size(); i++){
+        // Check horizontal win (row-wise)
         if (field[i][0] != 0 && field[i][0] == field[i][1] && field[i][0] == field[i][2]){
-            // cout << field[i][0] << " hat gewonnen (case 1)" << endl;
             return field[i][0];
-        }else if (field[0][i] != 0 && field[0][i] == field[1][i] && field[0][i] == field[2][i])
+        }
+        // Check vertical win (column-wise)
+        else if (field[0][i] != 0 && field[0][i] == field[1][i] && field[0][i] == field[2][i])
         {
-            // cout << field[0][i] << " hat gewonnen (case 2)"<< endl;
             return field[0][i];
 
         }
     }
+        // Check diagonal from top-left to bottom-right
         if (field[0][0] != 0 && field[0][0] == field[1][1] && field[0][0] == field[2][2]){
-            // cout << field[0][0] << " hat gewonnen (case 3)" << endl;
             return field[0][0];
         }
+        // Check diagonal from top-right to bottom-left
         if (field[2][0] != 0 && field[2][0] == field[1][1] && field[2][0] == field[0][2]){
-                // cout << field[2][0] << " hat gewonnen (case 4)" << endl;
                 return field[2][0];
         }
 
